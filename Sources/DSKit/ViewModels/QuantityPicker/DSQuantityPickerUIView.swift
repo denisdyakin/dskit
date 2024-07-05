@@ -37,6 +37,22 @@ final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     /// DSReusableUIView protocol
     public var view: UIView { self }
     
+    public func disableIncBtn() {
+        self.increaseQuantityButton.isEnabled = false
+    }
+    
+    public func enableIncBtn() {
+        self.increaseQuantityButton.isEnabled = true
+    }
+    
+    public func enableDecBtn() {
+        self.decreaseQuantityButton.isEnabled = true
+    }
+    
+    public func disableDecBtn() {
+        self.decreaseQuantityButton.isEnabled = false
+    }
+    
     /// Set up with view model is called each time when a copy of
     /// this uiview is prepared to be displayed on the screen
     /// - Parameter viewModel: DSViewModel
