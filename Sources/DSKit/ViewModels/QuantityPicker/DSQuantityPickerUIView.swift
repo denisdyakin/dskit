@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DSQuantityPickerUIView: UIView, DSReusableUIView {
+public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     
     // Text
     @IBOutlet weak var pickerView: UIView!
