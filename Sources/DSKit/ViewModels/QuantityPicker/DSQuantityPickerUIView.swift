@@ -87,7 +87,7 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
         quantityLabel.setStyle(type: viewModel.quantityTextType, designableTextColor: viewModel.viewColors().text)
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
         setUpButtonsStyle()
