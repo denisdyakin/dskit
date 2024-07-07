@@ -55,8 +55,10 @@ open class ImoButton: UIButton {
     }
     
     @objc func touchUpInside() {
-        if let didTouchUpInside = self.didTouchUpInside && !disabled {
-            didTouchUpInside(nil)
+        if let didTouchUpInside = self.didTouchUpInside {
+            if !disabled {
+                didTouchUpInside(nil)
+            }
         }
     }
     
