@@ -38,19 +38,19 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     public var view: UIView { self }
     
     public func disableIncBtn() {
-        self.increaseQuantityButton.isEnabled = false
+        self.increaseQuantityButton.button.disabled = true
     }
     
     public func enableIncBtn() {
-        self.increaseQuantityButton.isEnabled = true
+        self.increaseQuantityButton.button.disabled = false
     }
     
     public func enableDecBtn() {
-        self.decreaseQuantityButton.isEnabled = true
+        self.decreaseQuantityButton.button.disabled = false
     }
     
     public func disableDecBtn() {
-        self.decreaseQuantityButton.isEnabled = false
+        self.decreaseQuantityButton.button.disabled = true
     }
     
     /// Set up with view model is called each time when a copy of

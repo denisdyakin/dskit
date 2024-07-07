@@ -13,15 +13,18 @@ import UIKit
 /// touch up inside a button
 
 open class ImoButton: UIButton {
-
+    
+    public var disabled: Bool = false
+    
     public var didTouchUpInside: ((Any?) -> Void)?
     
     public init() {
         
         super.init(frame: CGRect.zero)
+        
         self.addTarget(self, action: #selector(touchUpInside),
                        for: UIControl.Event.touchUpInside)
-        
+    
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -52,10 +55,11 @@ open class ImoButton: UIButton {
     }
     
     @objc func touchUpInside() {
-        if let didTouchUpInside = self.didTouchUpInside {
+        if let didTouchUpInside = self.didTouchUpInside && !disabled {
             didTouchUpInside(nil)
         }
     }
+    
     
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return bounds.insetBy(dx: -30, dy: -30).contains(point)

@@ -12,12 +12,14 @@ public struct DSButton: Equatable, Hashable {
     
     public init(title: String? = nil,
                 sfSymbolName: String? = nil,
+                isDiasbled: Bool = false,
                 style: DSSFSymbolConfigStyle = .medium,
                 action: @escaping () -> Void) {
         
         self.title = title
         self.style = style
         self.action = action
+        self.isDisabled = isDiasbled
         
         if let sfSymbolName = sfSymbolName {
             self.imageContent = DSImageContent.sfSymbol(name: sfSymbolName, style: style)
@@ -26,6 +28,7 @@ public struct DSButton: Equatable, Hashable {
     
     public init(title: String? = nil,
                 image: DSImageContent,
+                isDiasbled: Bool = false,
                 style: DSSFSymbolConfigStyle = .medium,
                 action: @escaping () -> Void) {
         
@@ -33,6 +36,7 @@ public struct DSButton: Equatable, Hashable {
         self.style = style
         self.action = action
         self.imageContent = image
+        self.isDisabled = isDiasbled
     }
     
     public init(title: String,
@@ -49,6 +53,7 @@ public struct DSButton: Equatable, Hashable {
     public let title: String?
     public var imageContent: DSImageContent?
     public var style: DSSFSymbolConfigStyle
+    public var isDisabled: Bool = false
     
     @NonEquatable public var action: () -> Void
 }
@@ -59,6 +64,7 @@ extension DSButton: DSViewable {
         
         let button = ImoButton()
         button.setUp(button: self, designableViewColors: designableViewColors)
+        button.disabled = self.isDisabled
         
         button.didTouchUpInside = { button in
             self.action()
