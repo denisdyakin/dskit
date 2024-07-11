@@ -22,6 +22,8 @@ public final class DSImageUIView: UIView, DSReusableUIView {
     // View model
     var viewModel: DSImageVM?
     
+    public var maskColor: UIColor?
+    
     // View
     public var view: UIView { self }
     
@@ -32,6 +34,7 @@ public final class DSImageUIView: UIView, DSReusableUIView {
         // Cast DSViewModel to DSImageVM
         guard let viewModel = viewModel as? DSImageVM else { return }
         self.viewModel = viewModel
+        self.maskColor = viewModel.maskedColor
         update(viewModel: viewModel)
     }
     
@@ -71,11 +74,11 @@ public final class DSImageUIView: UIView, DSReusableUIView {
             let width = viewModel.width.absolute() ?? 50
             let height = viewModel.height.absolute() ?? 50
             
-            imageView.setImageDisplayStyle(viewModel.imageDisplayStyle, size: .size(.init(width: width, height: height)), cornerRadius: cornerRadius)
+            imageView.setImageDisplayStyle(viewModel.imageDisplayStyle, size: .size(.init(width: width, height: height)), cornerRadius: cornerRadius, color: self.maskColor)
             
         } else {
             
-            imageView.setImageDisplayStyle(viewModel.imageDisplayStyle, size: .unknown, cornerRadius: cornerRadius)
+            imageView.setImageDisplayStyle(viewModel.imageDisplayStyle, size: .unknown, cornerRadius: cornerRadius, color: self.maskColor)
         }
         
         switch viewModel.imageDisplayStyle {

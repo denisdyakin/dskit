@@ -23,6 +23,9 @@ public struct DSImageVM: DSViewModel, Equatable, Hashable {
     // Tint color
     public var tintColor: DSImageTintColor = .default
     
+    //masked color
+    public var maskedColor: UIColor? = nil
+    
     /// Init image with Name
     /// - Parameters:
     ///   - image: Name
@@ -83,12 +86,15 @@ public struct DSImageVM: DSViewModel, Equatable, Hashable {
     public init(imageUrl: URL?,
                 height: DSViewModelHeight = .fractional(1.0),
                 displayStyle: DSImageDisplayStyle = .themeCornerRadius,
-                contentMode: DSImageContentMode = .scaleAspectFill) {
+                contentMode: DSImageContentMode = .scaleAspectFill,
+                maskedColor: UIColor? = nil
+    ) {
         
         self.imageContent = DSImageContent.imageURL(url: imageUrl)
         self.height = height
         self.imageDisplayStyle = displayStyle
         self.contentMode = contentMode
+        self.maskedColor = maskedColor
     }
     
     // View width
