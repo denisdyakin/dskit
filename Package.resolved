@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/airbnb/HorizonCalendar.git",
         "state": {
           "branch": null,
-          "revision": "1e98736e42fe4e5bea39ce8b89838641f2261c32",
-          "version": "1.13.3"
+          "revision": "3b8e98233634591bbf6fbdd6654f79455e02288b",
+          "version": "1.16.0"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "5b92f029fab2cce44386d28588098b5be0824ef5",
-          "version": "7.11.0"
+          "revision": "2ef543ee21d63734e1c004ad6c870255e8716c50",
+          "version": "7.12.0"
         }
       }
     ]
