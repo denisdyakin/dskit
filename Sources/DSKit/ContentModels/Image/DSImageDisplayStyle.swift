@@ -28,12 +28,11 @@ public enum DSImageDisplayStyle: Equatable, Hashable {
 
 extension UIImageView {
     
-    func maskWithColor(color: UIColor) {
-        let maskLayer = CALayer()
-        maskLayer.frame = self.bounds
-        maskLayer.backgroundColor = color.cgColor
-        
-        self.layer.mask = maskLayer
+    func maskWithColor(color: UIColor, alpha: CGFloat = 0.5) {
+        let overlayView = UIView(frame: self.bounds)
+        overlayView.backgroundColor = color.withAlphaComponent(alpha)
+        overlayView.isUserInteractionEnabled = false
+        self.addSubview(overlayView)
     }
     
     func setImageDisplayStyle(_ style: DSImageDisplayStyle,

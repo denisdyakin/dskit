@@ -46,6 +46,10 @@ public final class DSImageUIView: UIView, DSReusableUIView {
         
         imageView.setImageContent(viewModel.imageContent)
         
+        if self.maskColor != nil {
+            imageView.maskWithColor(color: self.maskColor!)
+        }
+        
         
         imageView.setImageContentMode(viewModel.contentMode)
         imageView.setImageTintColor(viewModel.tintColor, designableViewColors: viewColors)
