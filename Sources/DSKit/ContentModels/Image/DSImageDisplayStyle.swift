@@ -28,9 +28,19 @@ public enum DSImageDisplayStyle: Equatable, Hashable {
 
 extension UIImageView {
     
+    func maskWithColor(color: UIColor) {
+        let maskLayer = CALayer()
+        maskLayer.frame = self.bounds
+        maskLayer.backgroundColor = color.cgColor
+        
+        self.layer.mask = maskLayer
+    }
+    
     func setImageDisplayStyle(_ style: DSImageDisplayStyle,
                               size: DSImageSize,
-                              cornerRadius: CGFloat) {
+                              cornerRadius: CGFloat,
+                              color: UIColor? = nil
+    ) {
         
         self.clipsToBounds = true
         
@@ -38,6 +48,10 @@ extension UIImageView {
         case .default:
             self.layer.cornerRadius = 0
         case .circle:
+            
+            if color != nil {
+                self.maskWithColor(color: color!)
+            }
             
             switch size {
             case .size(let size):
@@ -56,6 +70,11 @@ extension UIImageView {
             }
             
         case .themeCornerRadius:
+            
+            if color != nil {
+                self.maskWithColor(color: color!)
+            }
+            
             self.layer.cornerRadius = cornerRadius
         }
     }

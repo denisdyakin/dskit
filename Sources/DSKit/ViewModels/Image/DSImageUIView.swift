@@ -9,7 +9,7 @@
 
 import UIKit
 
-final class DSImageUIView: UIView, DSReusableUIView {
+public final class DSImageUIView: UIView, DSReusableUIView {
     
     // Image view
     @IBOutlet weak var imageView: UIImageView!
@@ -37,7 +37,7 @@ final class DSImageUIView: UIView, DSReusableUIView {
     
     /// Update view with view model
     /// - Parameter viewModel: DSActionVM
-    func update(viewModel: DSImageVM) {
+    public func update(viewModel: DSImageVM) {
         
         let viewColors = viewModel.viewColors()
         
@@ -48,7 +48,7 @@ final class DSImageUIView: UIView, DSReusableUIView {
         imageView.setImageTintColor(viewModel.tintColor, designableViewColors: viewColors)
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         guard let viewModel = self.viewModel else {
@@ -95,7 +95,7 @@ final class DSImageUIView: UIView, DSReusableUIView {
         }
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
     }
