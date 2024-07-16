@@ -34,28 +34,11 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     var addButton: DSButtonVM!
     var removeButton: DSButtonVM!
     
-    public var isIncDisabled = false
+    public var maxValue: Int = 1
+    public var minValue: Int = 1
     
     /// DSReusableUIView protocol
     public var view: UIView { self }
-    
-    public func disableIncBtn() {
-        isIncDisabled = true
-        self.increaseQuantityButton.button.disabled = true
-    }
-    
-    public func enableIncBtn() {
-        isIncDisabled = false
-        self.increaseQuantityButton.button.disabled = false
-    }
-    
-    public func enableDecBtn() {
-        self.decreaseQuantityButton.button.disabled = false
-    }
-    
-    public func disableDecBtn() {
-        self.decreaseQuantityButton.button.disabled = true
-    }
     
     /// Set up with view model is called each time when a copy of
     /// this uiview is prepared to be displayed on the screen
@@ -119,7 +102,9 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
                 return
             }
             
-            if self.isIncDisabled {
+            let nextQuantity = viewModel.quantity + 1
+            
+            if nextQuantity > self.maxValue {
                 return
             }
             
@@ -135,7 +120,9 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
                 return
             }
             
-            guard viewModel.quantity >= 1 else {
+            let nextQuantity = viewModel.quantity - 1
+            
+            if nextQuantity < self.minValue {
                 return
             }
             
@@ -159,12 +146,10 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
         self.quantityLabel.text = viewModel.quantity.string() + sufix
     }
     
-    class func instanceFromNib(isIncDisabled: Bool = false) -> DSQuantityPickerUIView {
+    class func instanceFromNib(maxValue: Int = 1, minValue: Int = 1) -> DSQuantityPickerUIView {
         let view: DSQuantityPickerUIView = initFromNib()
-        if isIncDisabled {
-            view.disableIncBtn()
-            view.isIncDisabled = isIncDisabled
-        }
+        view.maxValue = maxValue
+        view.minValue = minValue
         return view
     }
 }

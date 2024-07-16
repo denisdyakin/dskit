@@ -11,6 +11,8 @@ import UIKit
 public class DSQuantityPickerVM: DSViewModel, Equatable, Hashable {
     
     public var quantity: Int = 1
+    public var maxValue: Int = 1
+    public var minValue: Int = 1
     public var quantityPluralText: String?
     public var quantitySingularText: String?
     public var isIncDisabled: Bool? = false
@@ -18,17 +20,10 @@ public class DSQuantityPickerVM: DSViewModel, Equatable, Hashable {
     var view: DSQuantityPickerUIView?
     
     // Properties
-    public init(quantity: Int = 1, isIncDisabled: Bool = false) {
+    public init(quantity: Int = 1, maxValue: Int = 1, minValue: Int = 1) {
         self.quantity = quantity
-        self.isIncDisabled = isIncDisabled
-    }
-    
-    public func enableInc() {
-        self.view?.enableIncBtn()
-    }
-    
-    public func disableInc() {
-        self.view?.disableIncBtn()
+        self.maxValue = maxValue
+        self.minValue = minValue
     }
     
     // View model right view
@@ -130,7 +125,7 @@ public extension DSQuantityPickerVM {
     /// Get UIView representation
     /// - Returns: DSReusableUIView
     func viewRepresentation() -> DSReusableUIView {
-        self.view = DSQuantityPickerUIView.instanceFromNib(isIncDisabled: self.isIncDisabled!)
+        self.view = DSQuantityPickerUIView.instanceFromNib(maxValue: maxValue, minValue: minValue)
         return self.view!
     }
     
