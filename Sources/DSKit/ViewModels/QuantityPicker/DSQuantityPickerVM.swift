@@ -13,10 +13,12 @@ public class DSQuantityPickerVM: DSViewModel, Equatable, Hashable {
     public var quantity: Int = 1
     public var quantityPluralText: String?
     public var quantitySingularText: String?
+    public var isIncDisabled: Bool?
     
     // Properties
-    public init(quantity: Int = 1) {
+    public init(quantity: Int = 1, isIncDisabled: Bool = false) {
         self.quantity = quantity
+        self.isIncDisabled = isIncDisabled
     }
     
     // View model right view

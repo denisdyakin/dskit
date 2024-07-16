@@ -34,6 +34,8 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     var addButton: DSButtonVM!
     var removeButton: DSButtonVM!
     
+    public var isIncDisabled = false
+    
     /// DSReusableUIView protocol
     public var view: UIView { self }
     
@@ -115,6 +117,10 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
                 return
             }
             
+            if self.isIncDisabled {
+                return
+            }
+            
             viewModel.quantity = viewModel.quantity + 1
             self.updateQuantityLabel(viewModel: viewModel)
             viewModel.quantityDidUpdate?(viewModel.quantity)
@@ -151,8 +157,12 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
         self.quantityLabel.text = viewModel.quantity.string() + sufix
     }
     
-    class func instanceFromNib() -> DSQuantityPickerUIView {
+    class func instanceFromNib(isIncDisabled: Bool = false) -> DSQuantityPickerUIView {
         let view: DSQuantityPickerUIView = initFromNib()
+        if isIncDisabled {
+            view.disableIncBtn()
+            view.isIncDisabled = isIncDisabled
+        }
         return view
     }
 }
