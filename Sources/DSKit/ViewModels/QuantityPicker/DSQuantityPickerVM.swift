@@ -27,6 +27,10 @@ public class DSQuantityPickerVM: DSViewModel, Equatable, Hashable {
         self.view?.enableIncBtn()
     }
     
+    public func disableInc() {
+        self.view?.disableIncBtn()
+    }
+    
     // View model right view
     var rightView: DSView?
     
