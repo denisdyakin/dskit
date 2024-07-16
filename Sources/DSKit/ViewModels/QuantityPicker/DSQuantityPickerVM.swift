@@ -15,10 +15,16 @@ public class DSQuantityPickerVM: DSViewModel, Equatable, Hashable {
     public var quantitySingularText: String?
     public var isIncDisabled: Bool? = false
     
+    var view: DSQuantityPickerUIView?
+    
     // Properties
     public init(quantity: Int = 1, isIncDisabled: Bool = false) {
         self.quantity = quantity
         self.isIncDisabled = isIncDisabled
+    }
+    
+    public func enableInc() {
+        self.view?.enableIncBtn()
     }
     
     // View model right view
@@ -120,7 +126,8 @@ public extension DSQuantityPickerVM {
     /// Get UIView representation
     /// - Returns: DSReusableUIView
     func viewRepresentation() -> DSReusableUIView {
-        return DSQuantityPickerUIView.instanceFromNib(isIncDisabled: self.isIncDisabled!)
+        self.view = DSQuantityPickerUIView.instanceFromNib(isIncDisabled: self.isIncDisabled!)
+        return self.view!
     }
     
     /// Is this view model equal to another

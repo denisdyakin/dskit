@@ -40,10 +40,12 @@ public final class DSQuantityPickerUIView: UIView, DSReusableUIView {
     public var view: UIView { self }
     
     public func disableIncBtn() {
+        isIncDisabled = true
         self.increaseQuantityButton.button.disabled = true
     }
     
     public func enableIncBtn() {
+        isIncDisabled = false
         self.increaseQuantityButton.button.disabled = false
     }
     
