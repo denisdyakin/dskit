@@ -26,7 +26,7 @@ class DSReusableCollectionSupplementaryView: UICollectionReusableView {
         
         // If reusableView is nil then we will add
         // new view to the reusable collection view cell
-        if reusableView == nil {
+        if reusableView == nil || ((viewModel as? DSQuantityPickerVM) != nil) {
             reusableView = viewModel.viewRepresentation()
             self.addCustomSubview(view: reusableView?.view, group: constraintGroup)
         }
