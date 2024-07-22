@@ -57,9 +57,27 @@ class DSReusableCollectionViewCell: UICollectionViewCell {
             return
         }
         
+        //is viewModel contains DSQuantityPickerVM
+        var isQuantityPicker = false
+        
+        isQuantityPicker = (viewModel as? DSQuantityPickerVM) != nil
+        
+        if viewModel.supplementaryItems != nil {
+            for supView in viewModel.supplementaryItems! {
+                if isQuantityPicker {
+                    continue
+                }
+                
+                if (supView.view as? DSQuantityPickerVM) != nil {
+                    isQuantityPicker = true
+                }
+            }
+        }
+        
+        
         // If reusableView is nil then we will add
         // new view to the reusable collection view cell
-        if reusableView == nil {
+        if reusableView == nil || isQuantityPicker {
             
             reusableView = viewModel.viewRepresentation()
             
